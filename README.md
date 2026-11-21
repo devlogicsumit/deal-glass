@@ -1,4 +1,4 @@
-# Deal Glass
+# Deal Glass🛡️
 
 **Asymmetric Multi-Party Chat • Zero-Leak Dual-Channel Relay**
 
