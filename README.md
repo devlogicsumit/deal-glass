@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Deal Glass
 
-## Getting Started
+**Asymmetric Multi-Party Chat • Zero-Leak Dual-Channel Relay**
 
-First, run the development server:
+Built for the **NexConn Build Challenge**, **Deal Glass** is a real-time communication firewall for agencies, brokers, and middlemen managing high-stakes client–vendor workflows. Instead of putting clients and external contractors in the same group chat—where budgets, contact details, and brand names leak—Deal Glass routes every message through a **Broker Control Room** powered by the **Nexconn Chat SDK**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🔗 **Live Demo:** `https://deal-glass.vercel.app/`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## The Problem
+When agencies or brokers coordinate between a **Client** and a **Vendor/Freelancer**, standard group chats create three immediate business risks:
+1. **Disintermediation:** Clients and vendors exchange phone numbers, emails, or links and bypass the broker.
+2. **Margin Exposure:** Mentioning client budgets (`₹50,000`) or contractor rates (`₹28,000`) breaks pricing confidentiality.
+3. **Zero Review Buffer:** Clients state raw deadlines (*"deliver by Friday"*), leaving the broker no buffer time for QA before delivery.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## How Deal Glass Solves It
+Deal Glass enforces a **Zero-Leak Dual-Channel Relay** where the Client and Vendor never share a direct channel:
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```text
+[ Client ] ──(DirectChannel)──▶ [ Broker Control Room ] ──(DirectChannel)──▶ [ Vendor ]
+                                   │
+                                   ├─ 1. Real-Time Refraction Engine (lib/refract.ts)
+                                   │     • Masks phones, emails, URLs & currencies
+                                   │     • Shields custom brand/company keywords
+                                   │     • Shifts deadlines by a configurable review buffer (-2d)
+                                   │
+                                   ├─ 2. Broker Quarantine Gate
+                                   │     • High-risk leaks pause for Approve / Edit / Block
+                                   │     • Low-risk messages auto-relay with deadline shifts
+                                   │
+                                   └─ 3. Ghost Whispers
+                                         • Private Broker → Client, Broker → Vendor, or Both
